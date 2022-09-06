@@ -145,22 +145,29 @@ function init(){
   light03.position.set(-5, 6, 0);
   scene.add(light03);
 
-  const pointLightHelper = new THREE.PointLightHelper( light03 );
-  scene.add( pointLightHelper );
+  // const pointLightHelper = new THREE.PointLightHelper( light03 );
+  // scene.add( pointLightHelper );
 
   const light04 = new THREE.PointLight(0xFFFFFF, 2, 50, 1.0);
   light04.position.set(4, 10, 0);
   scene.add(light04);
 
-  const pointLightHelper02 = new THREE.PointLightHelper( light04 );
-  scene.add( pointLightHelper02 );
+  // const pointLightHelper02 = new THREE.PointLightHelper( light04 );
+  // scene.add( pointLightHelper02 );
 
   const light05 = new THREE.PointLight(0xFFFFFF, 4, 100, 2.0);
   light05.position.set(4, 3, 0);
   scene.add(light05);
 
-  const pointLightHelper03 = new THREE.PointLightHelper( light05 );
-  scene.add( pointLightHelper03 );
+  // const pointLightHelper03 = new THREE.PointLightHelper( light05 );
+  // scene.add( pointLightHelper03 );
+
+  const light06 = new THREE.PointLight(0xFFFFFF, 4, 200, 2.0);
+  light06.position.set(6, 2, 0);
+  scene.add(light06);
+
+  // const pointLightHelper04 = new THREE.PointLightHelper( light06 );
+  // scene.add( pointLightHelper04 );
 
 
   // const envImage = 'https://picsum.photos/id/223/1024/1024';
@@ -259,6 +266,9 @@ function init(){
   let rad;
 
   function animate(){
+    step += 0.8;
+    rad = radian(step);
+
     //カメラの視点からマウス座標をマッピング
     raycaster.setFromCamera(mouse3D, camera);
     //マウス座標が床の形状と交差するかどうかを確認
@@ -304,6 +314,9 @@ function init(){
             z: scale,
           });
 
+          // mesh.rotation.x += 0.03;
+          // mesh.rotation.y += 0.02;
+
           gsap.to(mesh.rotation, 0.9, {
             ease: Back.easeOut.config(1.7),
             x: map(mesh.position.y, -1, 1, radians(45), mesh.initialRotation.x),
@@ -314,8 +327,7 @@ function init(){
       }
     }
 
-    step += 0.8;
-    rad = radian(step);
+    
 
     // light01.position.x = 10 * Math.cos(rad * 0.1);
     // light01.position.z = 10 * Math.sin(rad * 0.1);
@@ -324,10 +336,14 @@ function init(){
     light03.position.z = 15 * Math.sin(rad * 0.8);
 
     light04.position.x = 12 * Math.cos(rad);
-    light04.position.z = 12 * Math.sin(rad);
+    light04.position.z = 10 * Math.sin(rad);
 
     light05.position.x = 15 * Math.sin(rad * 1.5);
     light05.position.z = 15 * Math.cos(rad * 1.5);
+
+
+    light06.position.x = 7 * Math.sin(rad * 1.5) * Math.sin(rad * 1.2);
+    light06.position.z = 10 * Math.cos(rad * 1.5);
 
     // light04.position.x += Math.sin(10);
 
